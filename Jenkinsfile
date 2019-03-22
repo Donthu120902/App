@@ -4,22 +4,15 @@
    }
    stage('Compile-Package'){
     
-      def mvnHome =  tool name: 'maven-3', type: 'maven'   
+      def mvnHome =  tool name: 'Maven', type: 'maven'   
       sh "${mvnHome}/bin/mvn package"
    }
    stage('Email Notification'){
-      mail bcc: '', body: '''Hi Welcome to jenkins email alerts
+      mail bcc: '', body: '''Hi Welcome to jenkins email alerts, your build got succeded 
       Thanks
-      Hari''', cc: '', from: '', replyTo: '', subject: 'Jenkins Job', to: 'hari.kammana@gmail.com'
+      DJ''', cc: '', from: '', replyTo: '', subject: 'Jenkins Job', to: 'jagadeeshdonthu15@gmail.com'
    }
-   stage('Slack Notification'){
-       slackSend baseUrl: 'https://hooks.slack.com/services/',
-       channel: '#jenkins-pipeline-demo',
-       color: 'good', 
-       message: 'Welcome to Jenkins, Slack!', 
-       teamDomain: 'javahomecloud',
-       tokenCredentialId: 'slack-demo'
-   }
+   
 }
 
 
