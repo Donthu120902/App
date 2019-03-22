@@ -7,13 +7,11 @@
       def mvnHome =  tool name: 'Maven', type: 'maven'   
       sh "${mvnHome}/bin/mvn package"
    }
-   stage('Gmail-Notification'){
-    
-      emailext body: '''Hi Jagadeesh ,
-
-      Build success 
-
-      Thanks''', subject: 'Build Notify', to: 'jagadeeshrules@gmail.com'
+    stage('Slack-Notification){
+          slackSend baseUrl: 'https://hooks.slack.com/services/', channel: '#jenkinsnotifications', color: 'good', message: 'Build success ', teamDomain: 'Test-Domain', tokenCredentialId: 'Slackdemo'
+          
+          
+          
    }
    
 }
