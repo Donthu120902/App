@@ -9,11 +9,11 @@
    }
     stage('mail-Notification'){
     
-      emailext body: '''Hi Jagadeesh,
+      mail bcc: '', body: '''Hi Jagadeesh,
 
-      welcome to Jenkins , your build is success.
+      welcome to jenkins! your build got success.
 
-      Thanks''', subject: 'Build Notice ', to: 'jagadeeshrules@gmail.com'
+      Thanks ''', cc: '', from: '', replyTo: '', subject: 'Jenkins Build Notify', to: 'jagadeeshrules@gmail.com'
     }
    
 }
