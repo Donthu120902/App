@@ -1,19 +1,13 @@
   node{
    stage('SCM Checkout'){
-     git 'https://github.com/javahometech/my-app'
+     git  'https://github.com/wakaleo/game-of-life.git'
    }
-   stage('Compile-Package'){
-    
-      def mvnHome =  tool name: 'Maven', type: 'maven'   
+   stage('Compile-Package'){   
       sh "${mvnHome}/bin/mvn package"
    }
-    stage('Slack-Notification'){
-          slackSend baseUrl: 'https://hooks.slack.com/services/', channel: '#jenkinsnotifications', color: 'good', message: 'Build success ', teamDomain: 'Test-Domain', tokenCredentialId: 'Slackdemo'
-          
-          
-          
-   }
-   
+    stage('Deploy'){
+      deploy adapters: [tomcat9(credentialsId: 'Deployment', path: '', url: 'http://65.0.131.44:8080/')], contextPath: '/pipelineJob', war: '**/*.war'
+    }
 }
 
 
