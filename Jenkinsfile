@@ -1,6 +1,6 @@
   node{
    stage('SCM Checkout'){
-     git  'https://github.com/wakaleo/game-of-life.git'
+     git  'https://github.com/spring-petclinic/spring-framework-petclinic.git'
    }
    stage('Compile-Package'){   
       sh 'mvn package '
