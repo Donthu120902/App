@@ -1,3 +1,2 @@
-FROM tomcat
-# Take the war and copy to webapps of tomcat
-COPY target/*.war /usr/local/tomcat/webapps/
+FROM httpd:latest
+COPY index.html /usr/local/apache2/htdocs
